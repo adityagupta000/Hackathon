@@ -53,7 +53,7 @@ function Login() {
               </div>
             </form>
 
-            <p className="text-center">Not a member? <a href="/register.html" >Register</a></p>
+            <p className="text-center">Not a member? <a href="../register.html" >Register</a></p>
           </div>
         </div>
       </div>

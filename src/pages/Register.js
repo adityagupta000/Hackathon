@@ -21,7 +21,7 @@ function HackathonRegister() {
 
               <div className="form-group p-2">
                 <label htmlFor="email">Email</label>
-                <input className="form-control" type="email" id="email" placeholder="✉️" />
+                <input className="form-control" type="email" id="email" placeholder="Email" />
               </div>
 
               <div className="form-group p-2">
@@ -51,12 +51,6 @@ function HackathonRegister() {
                 <textarea className="form-control" id="projectIdea" placeholder="Brief description of your project idea" rows="3"></textarea>
               </div>
 
-              <div className="form-check mb-3">
-                <input className="form-check-input" type="checkbox" id="termsAgreement" />
-                <label className="form-check-label" htmlFor="termsAgreement">
-                  I have read and agree to the terms
-                </label>
-              </div>
               <div className="d-flex justify-content-center">
                 <button type="submit" className="btn btn-primary" style={{ width: '200px' }}>Sign up</button>
               </div>

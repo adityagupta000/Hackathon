@@ -1,109 +1,65 @@
-/* Container styling for book cards */
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: left; /* Center cards within the container */
-}
-
-/* Styling for individual book cards */
-.book-card {
-  flex: 1 1 calc(33.333% - 20px); /* Each card takes up 1/3 of the row minus the gap */
-  max-width: calc(33.333% - 20px); /* Max width is also 1/3 minus the gap */
-  box-sizing: border-box; /* Ensure padding and borders are included in the width and height */
-  display: flex;
-  justify-content: center; /* Center content horizontally */
-}
-
-.book-card > div {
-  border: 1px solid #0011ff; /* Example border to distinguish cards */
-  padding: 25px 20px; /* Padding for the card content (top: 25px, right/left: 20px) */
-  width: 100%; /* Ensure the card takes full width available */
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box; /* Include padding in the width/height calculation */
-}
-
-/* Styling for images within book cards */
-.book-card img {
-  width: 100%; /* Ensures the image takes full width of its container */
-  height: auto; /* Let the height adjust based on the width to maintain aspect ratio */
-  max-height: 300px; /* Set a maximum height for all images */
-  object-fit: contain; /* Fit the image within the container without cropping */
-}
-
-/* Header Component Styles */
-.header-navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #343a40; /* Dark background */
-  padding: 25px; /* Padding for the navbar */
-}
-
-.header-navbar .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.brand-logo {
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-align: left;
-}
-
-.navbar-collapse {
-  display: flex;
-  justify-content: center;
-  flex-grow: 1;
-}
-
-.navbar-nav {
-  display: flex;
-  justify-content: center;
-}
-
 .nav-link {
-  color: #ffffff;
-  margin-right: 15px;
+  transition: color 0.3s, text-shadow 0.3s;
 }
 
-.nav-link.active {
-  color: #28a745; /* Green color for the active link */
+.nav-link:hover {
+  color: rgb(255, 0, 0) !important;
+  text-shadow: 0 0 0px red, 0 0 0px red, 0 0 0px red; 
 }
 
-.search-form {
-  display: flex;
-  align-items: center;
+.transition-card {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.search-input {
-  width: 200px;
-  margin-right: 10px; /* Adjusted margin-right */
+.transition-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.search-button {
-  color: #28a745; /* Outline success button */
+.event-card {
+  border: 1px solid;
+  border-image-slice: 1;
+  border-width: 1px;
+  border-image-source: linear-gradient(to left, rgb(0, 0, 0), red, blue, orange);
+  animation: glowing 1s infinite;
 }
 
-/* Responsive design adjustments */
-@media (max-width: 991px) {
-  .header-navbar .navbar-collapse {
-    justify-content: flex-start; /* Ensure alignment for smaller screens */
+@keyframes glowing {
+  0% {
+    border-color: rgb(21, 0, 255);
+    box-shadow: 0 0 3px rgb(0, 26, 255);
+    border-radius: 7px;
   }
-
-  .header-navbar .navbar-collapse .nav-link {
-    margin-right: 0;
+  50% {
+    border-color: rgb(255, 0, 0);
+    box-shadow: 0 0 2px rgb(255, 0, 0);
+    border-radius: 7px;
   }
-
-  .header-navbar .search-form {
-    width: 100%;
-    margin-top: 10px;
-    justify-content: center; /* Center the search form on smaller screens */
-  }
-
-  .header-navbar .search-input {
-    flex: 1;
+  100% {
+    border-color: rgb(0, 34, 255);
+    box-shadow: 0 0 1px rgb(0, 34, 255);
+    border-radius: 7px;
+    
   }
 }
+.custom-carousel-item {
+  height: 75vh; 
+}
+
+.custom-carousel-item img {
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .custom-carousel-item {
+    height: 50vh;
+  }
+}
+
+@media (max-width: 576px) {
+  .custom-carousel-item {
+    height: 40vh; /* Adjust the height as needed for extra small screens */
+  }
+}
+
