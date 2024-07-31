@@ -8,7 +8,7 @@ import image4 from '../images/4.jpg';
 const Home = () => (
   <div className="container-fluid px-3 py-3">
     <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
-      <div className="col mb-4">
+      <div className="col mb-3">
         <Event
           title="UI Battles"
           date="9th Dec"
@@ -18,27 +18,27 @@ const Home = () => (
           link="/code-quest"
         />
       </div>
-      <div className="col mb-4">
+      <div className="col mb-3">
         <Event
           title="Code Quest"
           date="9th Dec"
           time="09:30 - 2:30 PM"
-          description="Armour up with all your coding gear for a showdown in this time-bound quest to test your coding skills. Prepare to face coding challenges and take down your opponents to emerge victorious and claim prize."
+          description="Armour up with all your coding gear for a showdown in this time-bound quest to test your coding skills. Prepare to coding challenges take down your opponents to emerge victorious."
           image={image2}
           link="/code-quest"
         />
       </div>
-      <div className="col mb-4">
+      <div className="col mb-3">
         <Event
           title="Firepower"
           date="9th Dec"
           time="09:30 - 3:30 PM"
-          description="Join our Valorant Offline Tournament for top-tier gameplay, strategic brilliance, and the chance to win incredible prizes! Experience intense competition, unexpected comebacks, and the thrill of victory!."
+          description="Join our Valorant Offline Tournament for top-tier gameplay, strategic brilliance, and the chance to win incredible prizes! Experience intense competition,  and the thrill of victory!."
           image={image3}
           link="/code-quest"
         />
       </div>
-      <div className="col mb-4">
+      <div className="col mb-3">
         <Event
           title="Tech-Maze"
           date="9th Dec"

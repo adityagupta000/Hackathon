@@ -12,7 +12,7 @@
 }
 
 .transition-card:hover {
-  transform: scale(1.03);
+  transform: scale(1.05.6.);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -36,8 +36,8 @@
     border-radius: 7px;
   }
   100% {
-    border-color: rgb(0, 34, 255);
-    box-shadow: 0 0 1px rgb(0, 34, 255);
+    border-color: rgb(0, 255, 115);
+    box-shadow: 0 0 1px rgb(0, 255, 85);
     border-radius: 7px;
     
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './pages/Footer';
 import Home from './components/HomeEventCard';
@@ -20,9 +20,21 @@ function App() {
             <Route path="/register" element={<Register />} />
           </Routes>
         </div>
-        <Footer/>
+        <ConditionalFooter />
       </div>
     </Router>
   );
 }
+
+function ConditionalFooter() {
+  const location = useLocation();
+  const noFooterPaths = ['/login', '/register']; // Add more paths if needed
+
+  if (noFooterPaths.includes(location.pathname)) {
+    return null;
+  }
+
+  return <Footer />;
+}
+
 export default App;

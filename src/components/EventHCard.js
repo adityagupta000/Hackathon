@@ -3,8 +3,8 @@ import { Card } from 'react-bootstrap';
 import './App.css';  
 
 const EventCard = ({ title, date, time, description, image, link }) => (
-  <Card className="event-card mt-5 mb-4  transition-card " style={{ border: '3px solid black', borderColor: 'black green gray red' }}>
-    <Card.Img variant="top" src={image} />
+  <Card className="event-card mt-5 mb-4 transition-card" style={{ border: '3px solid black', borderColor: 'black green gray red' }}>
+    <Card.Img variant="top" src={image} style={{ borderRadius: '20px', padding: '10px', width: '100%', height: '320px' }} />
     <Card.Body>
       <Card.Title>{title}</Card.Title>
       <Card.Text>Date: {date}</Card.Text>

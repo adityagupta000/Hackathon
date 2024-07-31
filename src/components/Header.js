@@ -6,15 +6,14 @@ import './App.css';
 const Header = () => (
   <Navbar bg="black" variant="dark" expand="lg">
     <div className="container-fluid">
-      <Navbar.Brand as={NavLink} to="/" className="brand-logo mx-4">Hackathon</Navbar.Brand>
+      <Navbar.Brand as={NavLink} to="/" className="brand-logo mx-4"><strong>Hackathon</strong></Navbar.Brand>
       <Navbar.Toggle aria-controls="navbarNav" />
       <Navbar.Collapse id="navbarNav">
         <Nav className="mx-auto">
           <Nav.Link as={NavLink} to="/" className="nav-link rounded">Home</Nav.Link>
           <Nav.Link as={NavLink} to="/event" className="nav-link rounded ">Event</Nav.Link>
-          <Nav.Link as={NavLink} to="/categories" className="nav-link rounded">Categories</Nav.Link>
+          <Nav.Link as={NavLink} to="./categories" className="nav-link rounded">Categories</Nav.Link>
           <Nav.Link as={NavLink} to="/about-us" className="nav-link rounded">About Us</Nav.Link>
-          <Nav.Link as={NavLink} to="/contact" className="nav-link rounded">Contact</Nav.Link>
         </Nav>
         <div className="d-flex align-items-center">
           <NavLink to="/login" className="btn btn-outline-danger mx-">Login</NavLink>
