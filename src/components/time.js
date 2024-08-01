@@ -1,75 +1,81 @@
 import React, { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const HomeScreen = () => {
-  const [time, setTime] = useState({ hours: 12, minutes: 0, seconds: 0 });
+  const [time, setTime] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
-    const targetTime = new Date().getTime() + 12 * 60 * 60 * 1000;
+    const updateTimer = () => {
+      const storedTargetTime = localStorage.getItem('targetTime');
+      let targetTime;
 
-    const interval = setInterval(() => {
+      if (storedTargetTime) {
+        targetTime = parseInt(storedTargetTime, 10);
+        console.log("Stored target time:", targetTime);
+      } else {
+        targetTime = new Date().getTime() + 10 * 24 * 60 * 60 * 1000; // 10 days from now
+        localStorage.setItem('targetTime', targetTime);
+        console.log("New target time set:", targetTime);
+      }
+
       const now = new Date().getTime();
       const distance = targetTime - now;
+      console.log("Current time:", now);
+      console.log("Time distance:", distance);
 
       if (distance >= 0) {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        setTime({ hours, minutes, seconds });
+        setTime({ days, hours, minutes, seconds });
       } else {
-        clearInterval(interval);
-        setTime({ hours: 0, minutes: 0, seconds: 0 });
+        setTime({ days: 0, hours: 0, minutes: 0, seconds: 0 });
       }
-    }, 1000);
+    };
+
+    updateTimer(); // Initial call to set the timer immediately
+    const interval = setInterval(updateTimer, 1000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <main className="overflow-x-hidden bg-dark">
-      <style jsx>{`
-        .countdown-container {
-          
-          color: white;
-          padding: 20px;
-          border-radius: 10px;
-          text-align: center;
-          margin: 50px auto;
-          max-width: 900px;
-        }
-        .countdown-item {
-          background: rgba(0, 0, 0, 0.7);
-          border-radius: 5px;
-          padding: 10px;
-          margin: 5px;
-        }
-        .countdown-value {
-          font-size: 10em;
-          font-color:red;
-          font-weight: bold;
-
-        }
-        .countdown-label {
-          font-size: 2em;
-        }
-      `}</style>
-
-      <div className="countdown-container">
-        <h1>Event Time</h1>
-        <div className="d-flex justify-content-center mt-4">
-          <div className="countdown-item">
-            <div className="countdown-value">{time.hours}</div>
-            <div className="countdown-label">Hours</div>
+    <main className="overflow-x-hidden text-white">
+      <div className="container py-5">
+        <h1 className="text-center mb-5">
+          <span className="text-danger ">Countdown</span> To <span className="text-info">Innovation</span>
+        </h1>
+        <div className="row justify-content-center">
+          <div className="col-6 col-md-4 col-lg-2 text-center mb-4">
+            <div className="p-4 bg-warning text-black rounded">
+              <div className="display-1">{time.days}</div>
+              <div className="h5">Days</div>
+            </div>
           </div>
-          <div className="countdown-item">
-            <div className="countdown-value">{time.minutes}</div>
-            <div className="countdown-label">Minutes</div>
+          <div className="col-6 col-md-4 col-lg-2 text-center mb-4">
+            <div className="p-4 bg-danger text-black rounded">
+              <div className="display-1">{time.hours}</div>
+              <div className="h5">Hours</div>
+            </div>
           </div>
-          <div className="countdown-item">
-            <div className="countdown-value">{time.seconds}</div>
-            <div className="countdown-label">Seconds</div>
+          <div className="col-6 col-md-4 col-lg-2 text-center mb-4">
+            <div className="p-4 bg-light text-dark rounded">
+              <div className="display-1">{time.minutes}</div>
+              <div className="h5">Minutes</div>
+            </div>
+          </div>
+          <div className="col-6 col-md-4 col-lg-2 text-center mb-4">
+            <div className="p-4 bg-info text-dark rounded">
+              <div className="display-1">{time.seconds}</div>
+              <div className="h5">Seconds</div>
+            </div>
           </div>
         </div>
+        {/* <div className="text-center mt-4">
+          <button className="btn btn-primary" onClick={resetTimer}>Reset Timer</button>
+        </div> */}
       </div>
     </main>
   );
