@@ -80,7 +80,7 @@ const AboutUs = () => (
         </div>
       </div>
     </div>
-    <footer className="bg-dark text-white text-center py-3 mt-auto">
+    <footer className="bg-black white text-white text-center py-3 mt-auto border-top border-light">
       <p className="mb-0">© 2024 Hack-A-Fest. All rights reserved.</p>
     </footer>
   </div>

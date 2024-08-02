@@ -20,9 +20,10 @@ function HackathonRegister() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/register', formData);
+      await axios.post('http://localhost:5000/api/auth/register', formData); // Ensure endpoint matches backend
       alert('Registration successful');
     } catch (error) {
+      console.error('Error registering user:', error); // Log the error for debugging
       alert('Error registering user');
     }
   };
@@ -61,9 +62,10 @@ function HackathonRegister() {
                   <option value="4">4</option>
                   <option value="5">5</option>
                 </select>
+                <label className="floating-label" htmlFor="teamSize">Team Size</label>
               </div>
               <div className="d-flex justify-content-center">
-              <button type="submit" className="btn btn-outline-success  btn-md">Sign up</button>
+                <button type="submit" className="btn btn-outline-success btn-md">Sign up</button>
               </div>
             </form>
           </div>
@@ -83,7 +85,7 @@ function HackathonRegister() {
           left: 15px;
           top: 50%;
           transform: translateY(-50%);
-          padding: 0 5px;
+          padding: 0 3px;
           background: #fff;
           transition: 0.2s ease all; 
         }

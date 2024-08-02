@@ -33,37 +33,49 @@ const Sponsor = () => {
   // Split sponsors into rows
   const rows = [sponsors.slice(0, 4), sponsors.slice(4)];
 
+  // Define inline styles
+  const logoStyle = {
+    maxWidth: '200px',
+    transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+  };
+
   return (
     <>
       <h2 className="text-center mb-4">
-        <span className="text-success">Our</span> 
-        <span className="text-info"> Sponsors</span>
+        <span className="text-danger">Sponsored</span> 
+        <span className="text-info"> by</span>
       </h2>
-
-      <p className="text-center text-white mb-5">
-        We are grateful to our sponsors for their generous support and contribution. Their commitment helps make Hack-a-Fest possible.
-      </p>
-
       {rows.map((row, rowIndex) => (
         <div key={rowIndex} className="row justify-content-center">
           {row.map((sponsor, index) => (
-            <div key={index} className="col-md-3 d-flex align-items-end mb-4">
-              <a href={sponsor.website} target="_blank" rel="noopener noreferrer" className="d-flex flex-column align-items-center w-100">
+            <div key={index} className="col-md-3 d-flex align-items-center mb-4">
+              <a 
+                href={sponsor.website} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="d-flex flex-column align-items-center w-100"
+                style={{ textDecoration: 'none' }}
+              >
                 <img
                   src={sponsor.image}
-                  alt={sponsor.name}
+                  alt="Sponsor logo"
                   className="img-fluid rounded-3 shadow-sm"
-                  style={{ 
-                    maxWidth: '200px', 
-                    transition: 'transform 0.3s ease, box-shadow 0.3s ease'
-                  }}
+                  style={logoStyle}
                 />
-                <h5 className="text-white mt-3">{sponsor.name}</h5>
               </a>
             </div>
           ))}
         </div>
       ))}
+
+      <style>
+      {`
+        .img-fluid:hover {
+          transform: scale(1.1);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+      `}
+      </style>
     </>
   );
 };

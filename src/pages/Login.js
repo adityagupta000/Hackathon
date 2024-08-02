@@ -1,9 +1,28 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Login() {
   const [isAdmin, setIsAdmin] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      localStorage.setItem('token', response.data.token);
+      // Redirect or update UI based on authentication status
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    // Handle registration logic
+  };
 
   return (
     <div className="container-fluid d-flex justify-content-center align-items-center" style={{ minHeight: '100vh', backgroundColor: 'black' }}>
@@ -30,7 +49,7 @@ function Login() {
             <div className="tab-content">
               <div className={`tab-pane fade ${isAdmin ? '' : 'show active'} fade-in`}>
                 <div className="text-center mb-4">
-                  <p style={{color:'black'}}>Sign in with:</p>
+                  <p style={{ color: 'black' }}>Sign in with:</p>
                   <div className="d-flex justify-content-center flex-wrap">
                     <button className="btn btn-outline-danger mx-1 border border-info ">
                       <i className="fab fa-facebook-f"></i>
@@ -47,19 +66,33 @@ function Login() {
                   </div>
                   <p className="text-center mt-3">or</p>
                 </div>
-                <form>
+                <form onSubmit={handleLogin}>
                   <div className="floating-label-content">
-                    <input className="floating-input" type="email" id="email" placeholder=" " />
+                    <input
+                      className="floating-input"
+                      type="email"
+                      id="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder=" "
+                    />
                     <label className="floating-label" htmlFor="email">Email address</label>
                   </div>
                   <div className="floating-label-content">
-                    <input className="floating-input" type="password" id="password" placeholder=" " />
+                    <input
+                      className="floating-input"
+                      type="password"
+                      id="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder=" "
+                    />
                     <label className="floating-label" htmlFor="password">Password</label>
                   </div>
                   <div className="d-flex justify-content-between align-items-center mb-3">
                     <div className="form-check">
                       <input className="form-check-input border-primary form-shadow" type="checkbox" id="rememberMe" />
-                      <label className="form-check-label" htmlFor="rememberMe">Remember me</label>
+                      <label className="form-check-label" htmlFor="rememberMe" style={{ color: 'black' }}>Remember me</label>
                     </div>
                     <a href="#!" className="mb-4">Forgot password?</a>
                   </div>
@@ -67,17 +100,27 @@ function Login() {
                     <button type="submit" className="btn btn-outline-danger mb-3 form-shadow">Sign in</button>
                   </div>
                 </form>
-                <p className="text-center">Not a member? <a href="./register">Register</a></p>
+                <p className="text-center" style={{ color: 'black' }}> Not a member? <a href="./register">Register</a></p>
               </div>
               <div className={`tab-pane fade ${isAdmin ? 'show active' : ''} fade-in`}>
                 <h3 className="text-center mb-4">Administrative Login</h3>
-                <form>
+                <form onSubmit={handleLogin}>
                   <div className="floating-label-content">
-                    <input className="floating-input" type="text" id="adminUsername" placeholder=" " />
+                    <input
+                      className="floating-input"
+                      type="text"
+                      id="adminUsername"
+                      placeholder=" "
+                    />
                     <label className="floating-label" htmlFor="adminUsername">Username</label>
                   </div>
                   <div className="floating-label-content">
-                    <input className="floating-input" type="password" id="adminPassword" placeholder=" " />
+                    <input
+                      className="floating-input"
+                      type="password"
+                      id="adminPassword"
+                      placeholder=" "
+                    />
                     <label className="floating-label" htmlFor="adminPassword">Password</label>
                   </div>
                   <div className="d-flex justify-content-center">
@@ -96,9 +139,7 @@ function Login() {
           margin: 0;
           padding: 0;
         }
-        .form-shadow {
-          box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
-        }
+
         .image-container {
           display: flex;
           justify-content: center;
@@ -128,7 +169,7 @@ function Login() {
         .btn-inactive {
           background-color: transparent;
           color: #007bff;
-          border-color:red;
+          border-color: red;
         }
         .btn-inactive:hover {
           background-color: #e9ecef;
@@ -147,9 +188,9 @@ function Login() {
           left: 20px;
           top: 50%;
           transform: translateY(-50%);
-          padding: 0 5px;
+          padding: 0 3px;
           background: #fff;
-          transition: 0.2s ease all; 
+          transition: 0.3s ease all; 
         }
         .floating-input {
           font-size: 16px;
